@@ -6,7 +6,9 @@ import { redirect } from '@tanstack/react-router';
 function sessionConfig() {
   const password = process.env['SESSION_SECRET'];
   if (!password) throw new Error('The gift is not configured yet.');
-  return { password, name: 'koko-gift', maxAge: 60 * 60 * 24 * 7, cookie: { httpOnly: true, secure: true, sameSite: 'lax' as const, path: '/' } };
+  // The editor embeds the gift cross-site; partitioning keeps its encrypted
+  // cookie available there without sharing it across unrelated sites.
+  return { password, name: 'koko-gift', maxAge: 60 * 60 * 24 * 7, cookie: { httpOnly: true, secure: true, sameSite: 'none' as const, partitioned: true, path: '/' } };
 }
 
 export const unlockGift = createServerFn({ method: 'POST' })

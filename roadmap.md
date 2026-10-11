@@ -1,4 +1,5 @@
 # Anniversary surprise
+- [x] Repair session persistence inside the embedded preview; verified correct passkey opens the catch game, wrong passkeys stay locked, and locked direct visits return to welcome.
 - [x] Add number buttons, clear, and backspace on the passkey page; verified keypad unlock and mobile fit.
 - [x] Replace passkey chibis with the chosen GIF and verify automatic continuation for the correct passkey; wrong codes stay on the passkey page.
 - [x] Welcome with GIF and playful No sequence.
