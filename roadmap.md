@@ -1,4 +1,5 @@
 # Anniversary surprise
+- [ ] Repair session persistence when opening the gift inside the embedded preview and verify locked visitors remain gated.
 - [x] Add number buttons, clear, and backspace on the passkey page; verified keypad unlock and mobile fit.
 - [x] Replace passkey chibis with the chosen GIF and verify automatic continuation for the correct passkey; wrong codes stay on the passkey page.
 - [x] Welcome with GIF and playful No sequence.
