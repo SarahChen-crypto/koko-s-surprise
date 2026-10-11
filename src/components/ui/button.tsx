@@ -9,6 +9,10 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
+        gift: "gift-primary bg-primary text-primary-foreground hover:bg-primary/90",
+        gentle: "gift-secondary text-foreground hover:bg-secondary",
+        envelope: "envelope-button",
+        reason: "reason-card hover:border-primary",
         default: "bg-primary text-primary-foreground shadow hover:bg-primary/90",
         destructive: "bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90",
         outline:
