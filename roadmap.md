@@ -1,4 +1,5 @@
 # Anniversary surprise
+- [ ] Replace passkey chibis with the chosen GIF and verify automatic continuation for the correct passkey.
 - [x] Welcome with GIF and playful No sequence.
 - [x] Private five-digit passkey.
 - [x] Catch game with uploaded characters, five catches.
