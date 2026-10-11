@@ -1,7 +1,7 @@
 import { createFileRoute, useRouter } from '@tanstack/react-router';
 import { useServerFn } from '@tanstack/react-start';
 import { useEffect, useRef, useState } from 'react';
-import { ArrowLeft, Heart, LockKeyhole } from 'lucide-react';
+import { ArrowLeft, Delete, Heart, LockKeyhole, RotateCcw } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { GiftShell } from '@/components/gift-shell';
 import { unlockGift } from '@/lib/gift.functions';
@@ -71,6 +71,12 @@ function Index() {
       <h1>Enter a <span>passkey!</span></h1>
       <p>ဖွင့်ကြည့်ဖို့ နံပါတ်လေးထည့်ဦး</p>
       <div className="pin-wrap"><input aria-label="Five-digit passkey" className="pin-input" type="password" inputMode="numeric" autoComplete="off" maxLength={5} value={pin} autoFocus disabled={busy} onChange={e => setPin(e.target.value.replace(/\D/g, '').slice(0, 5))} placeholder="♡♡♡♡♡" /></div>
+      <div className="pin-keypad" role="group" aria-label="Passkey number buttons">
+        {['1', '2', '3', '4', '5', '6', '7', '8', '9'].map(number => <Button key={number} type="button" variant="gentle" disabled={busy || pin.length >= 5} onClick={() => { setError(''); setPin(value => (value + number).slice(0, 5)); }}>{number}</Button>)}
+        <Button type="button" variant="ghost" aria-label="Clear passkey" title="Clear passkey" disabled={busy || !pin.length} onClick={() => { setError(''); setPin(''); }}><RotateCcw /></Button>
+        <Button type="button" variant="gentle" disabled={busy || pin.length >= 5} onClick={() => { setError(''); setPin(value => (value + '0').slice(0, 5)); }}>0</Button>
+        <Button type="button" variant="ghost" aria-label="Delete last digit" title="Delete last digit" disabled={busy || !pin.length} onClick={() => { setError(''); setPin(value => value.slice(0, -1)); }}><Delete /></Button>
+      </div>
       <p className="text-sm text-muted-foreground">hint : ကိုကို နဲ့ bby နှစ်ယောက်ထဲသိတယ် တခြားဘယ်သူမှ ဖွင့်ကြည့်မရအောင်ဖွက်ထားတာ ကိုကိုစဥ်းစားကြည့်ကွ :3 <br /><span className="font-bold">(photobooth date)</span></p>
       {error && <p role="alert" className="error-note mt-4">{error}</p>}
       <div className="gift-actions"><Button type="submit" variant="gift" disabled={pin.length !== 5 || busy}>{busy ? 'Opening…' : 'Unlock my gift'} <LockKeyhole size={16} /></Button></div>
