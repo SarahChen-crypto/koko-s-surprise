@@ -1,0 +1,9 @@
+# Anniversary surprise
+- [x] Welcome with GIF and playful No sequence.
+- [x] Private five-digit passkey.
+- [x] Catch game with uploaded characters, five catches.
+- [x] Flower envelope, full letter, live relationship counter.
+- [x] Four milestone photo spaces and 100 numbered reasons.
+- [x] Verify gift flow and layout: five catches, wrong/right passkeys, locked direct visit, four milestones, 100 notes, no browser errors, mobile fits.
+- [ ] Add Star by Colde after the user supplies an audio file.
+- [ ] Confirm relationship start date with the user; counter provisionally uses October 12, 2024 (Rangoon time).
