@@ -236,11 +236,19 @@ button, input { font: inherit; }
 .reason-card svg { width:30px; height:30px; color:var(--primary); }
 .reason-card.revealed { background:var(--secondary); }
 .reason-count { text-align:center; margin-bottom:25px; color:var(--muted-foreground); font-size:14px; }
+.gift-music-frame { position:fixed; right:0; bottom:0; width:240px; height:150px; opacity:0; pointer-events:none; overflow:hidden; }
+.gift-music-frame iframe { width:100%; height:100%; border:0; }
+.music-toggle { display:flex; align-items:center; gap:8px; min-height:38px; padding:8px 14px; border-radius:999px; border:1px dashed var(--border); background:var(--paper); color:var(--muted-foreground); font-size:12px; font-weight:800; cursor:pointer; transition:color .2s, border-color .2s; }
+.music-toggle:hover { color:var(--primary); border-color:var(--primary); }
+.music-toggle svg { color:var(--primary); }
+.music-toggle.is-playing { border-style:solid; border-color:color-mix(in oklch, var(--primary) 40%, var(--border)); color:var(--primary); }
+.music-toggle.is-playing svg:last-of-type { animation:sway 1.9s ease-in-out infinite; }
+@keyframes sway { 0%,100% { transform:rotate(-9deg); } 50% { transform:rotate(9deg); } }
 @media(max-width:600px) {
  .gift-header { padding:20px; } .brand { font-size:13px; } .opening h1 { font-size:46px; } .opening p { font-size:16px; } .gif-wrap { width:210px; height:190px; } .gif-wrap img { width:180px; height:180px; }
  .doodle-one { left:3%; top:15%; font-size:35px; } .doodle-two { right:4%; top:32%; font-size:32px; } .doodle-three { left:5%; bottom:9%; font-size:25px; } .doodle-four { right:6%; bottom:12%; font-size:30px; }
  .opening { padding-bottom:70px; } .doodle-three { bottom:1%; } .doodle-four { bottom:3%; } .chapter-title { font-size:29px; } .letter-paper { padding:28px 20px; } .letter-paper h1 { font-size:27px; } .letter-paper p { font-size:14px; }
  .reasons-grid { grid-template-columns:repeat(2,1fr); gap:12px; } .reason-card { padding:14px; } .milestones { gap:45px; grid-template-columns:1fr; padding:15px 25px; } .curly-arrow { top:auto; bottom:-55px; right:25%; transform:rotate(90deg); } .polaroid:nth-child(2n) .curly-arrow { display:block; } .polaroid:last-child .curly-arrow { display:none; }
- .counter h2 { font-size:23px; } .pin-form h1 { font-size:36px; }
+ .counter h2 { font-size:23px; } .pin-form h1 { font-size:36px; } .music-toggle span { display:none; } .music-toggle { padding:8px 11px; }
 }
 @media(prefers-reduced-motion:reduce) { *,*::before,*::after { animation:none !important; scroll-behavior:auto !important; } }

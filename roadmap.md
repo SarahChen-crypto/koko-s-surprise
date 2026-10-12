@@ -8,5 +8,5 @@
 - [x] Flower envelope, full letter, live relationship counter.
 - [x] Four milestone photo spaces and 100 numbered reasons.
 - [x] Verify gift flow and layout: five catches, wrong/right passkeys, locked direct visit, four milestones, 100 notes, no browser errors, mobile fits.
-- [ ] Add Star by Colde after the user supplies an audio file.
+- [x] Background music "Star" by Colde plays from the supplied YouTube link (video GH-2rEDXWOI), starts with the first tap, loops, and can be paused from the header.
 - [ ] Confirm relationship start date with the user; counter provisionally uses October 12, 2024 (Rangoon time).
