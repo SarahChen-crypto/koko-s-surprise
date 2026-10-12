@@ -1,6 +1,6 @@
 export const gift = {
-  // Provisional anniversary date; confirm with the sender before publishing.
-  togetherSince: '2024-10-12T00:00:00+06:30',
+  // Confirmed by the sender: 12 Oct 2024, 12:17 PM Rangoon time.
+  togetherSince: '2024-10-12T12:17:00+06:30',
   title: 'Happy 2 years Anniversary Babe',
   letter: [
     'အရင်ဦးဆုံးဘာမှမပြောခင် ကိုကို ကို အရင် ကျေးဇူးတင်ချင်တယ်။ bby ကို ကောင်းတူတူ ဆိုးတူတူ အမြဲတူတူရှိပေးခဲ့တာကြောင့် ဒီ 2 နှစ်ဆိုတဲ့အချိန်ကို ရောက်လာရတာ။ ကိုကို effort တွေအများကြီးပါပါတယ် 💕',
