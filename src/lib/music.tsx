@@ -50,7 +50,7 @@ function loadYouTubeApi(): Promise<YTNamespace | null> {
       const script = document.createElement('script');
       script.src = 'https://www.youtube.com/iframe_api';
       script.async = true;
-      script.dataset.youtubeIframeApi = '1';
+      script.dataset['youtubeIframeApi'] = '1';
       script.onerror = finish;
       document.head.appendChild(script);
     }
