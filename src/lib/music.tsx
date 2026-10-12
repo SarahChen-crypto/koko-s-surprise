@@ -61,11 +61,12 @@ function loadYouTubeApi(): Promise<YTNamespace | null> {
 export function MusicProvider({ children }: { children: ReactNode }) {
   const [playing, setPlaying] = useState(false);
   const [ready, setReady] = useState(false);
-  const playerRef = useRef<YTPlayer | null>(null);
+  const toggleRef = useRef<() => void>(() => {});
 
   useEffect(() => {
     let disposed = false;
     let unlocked = false;
+    let isPlaying = false;
     let player: YTPlayer | null = null;
 
     const shell = document.createElement('div');
@@ -82,7 +83,7 @@ export function MusicProvider({ children }: { children: ReactNode }) {
     };
 
     // Browsers only allow sound after the visitor touches the page, so the song
-    // starts muted and the very first tap or key press lets the audio through.
+    // starts quietly and the very first tap or key press lets the audio through.
     function unlock() {
       if (unlocked || !player) return;
       unlocked = true;
@@ -120,7 +121,7 @@ export function MusicProvider({ children }: { children: ReactNode }) {
         },
         events: {
           onReady: () => {
-            playerRef.current = player;
+            if (disposed) return;
             setReady(true);
             try {
               player?.mute();
@@ -131,7 +132,8 @@ export function MusicProvider({ children }: { children: ReactNode }) {
             }
           },
           onStateChange: (event: { data: number }) => {
-            setPlaying(event.data === YT.PlayerState.PLAYING);
+            isPlaying = event.data === YT.PlayerState.PLAYING;
+            setPlaying(isPlaying);
             if (event.data === YT.PlayerState.ENDED) {
               try {
                 player?.seekTo(0, true);
@@ -145,37 +147,42 @@ export function MusicProvider({ children }: { children: ReactNode }) {
       });
     });
 
+    toggleRef.current = () => {
+      if (!player) return;
+      unlocked = true;
+      stopListening();
+      try {
+        if (isPlaying) player.pauseVideo();
+        else {
+          player.unMute();
+          player.setVolume(VOLUME);
+          player.playVideo();
+        }
+      } catch {
+        /* ignore */
+      }
+    };
+
     return () => {
       disposed = true;
+      toggleRef.current = () => {};
       stopListening();
       try {
         player?.destroy();
       } catch {
         /* ignore */
       }
-      playerRef.current = null;
       shell.remove();
     };
   }, []);
 
-  const toggle = () => {
-    const player = playerRef.current;
-    if (!player) return;
-    unlocked = true;
-    stopListening();
-    try {
-      if (playing) player.pauseVideo();
-      else {
-        player.unMute();
-        player.setVolume(VOLUME);
-        player.playVideo();
-      }
-    } catch {
-      /* ignore */
-    }
+  const value: MusicApi = {
+    playing,
+    ready,
+    toggle: () => toggleRef.current(),
   };
 
-  return <MusicContext.Provider value={{ playing, ready, toggle }}>{children}</MusicContext.Provider>;
+  return <MusicContext.Provider value={value}>{children}</MusicContext.Provider>;
 }
 
 export function MusicToggle() {
